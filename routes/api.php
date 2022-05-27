@@ -10,6 +10,7 @@ use App\Http\Controllers\ItensTelefoneComerciosControllerModel;
 use App\Http\Controllers\ItensTelefoneUsuariosController;
 use App\Http\Controllers\ItensTelefoneUsuariosControllerModel;
 use App\Http\Controllers\MarcasController;
+use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\PublicacaosController;
 use App\Http\Controllers\RanksController;
 use App\Http\Controllers\TelefonesController;
@@ -41,6 +42,7 @@ Route::get('itenstelefonecomercios', [ItensTelefoneComerciosController::class,'i
 Route::get('itenstelefoneusuarios', [ItensTelefoneUsuariosController::class,'index']);
 Route::get('marcas', [MarcasControllers::class,'index']);
 Route::get('publicacaos', [PublicacaosController::class,'index']);
+Route::get('produtos', [ProdutosController::class,'index']);
 Route::get('ranks', [RanksController::class,'index']);
 Route::get('telefones', [TelefonesController::class,'index']);
 Route::get('tipos', [TiposController::class,'index']);
@@ -55,6 +57,7 @@ Route::post('itenstelefonecomercio', [ItensTelefoneComerciosController::class,'s
 Route::post('itenstelefoneusuario', [ItensTelefoneUsuariosController::class,'store']);
 Route::post('marca', [MarcasController::class,'store']);
 Route::post('publicacao', [PublicacaosController::class,'store']);
+Route::post('produto', [ProdutosController::class,'store']);
 Route::post('rank', [RanksController::class,'store']);
 Route::post('telefone', [TelefonesController::class,'store']);
 Route::post('tipos', [TiposController::class,'store']);
@@ -69,6 +72,7 @@ Route::get('itenstelefonecomercio/{itenstelefonecomercio}', [ItensTelefoneComerc
 Route::get('itenstelefoneusuario/{itenstelefoneusuario}', [ItensTelefoneUsuariosController::class,'show']);
 Route::get('marca/{marca}', [MarcasController::class,'show']);
 Route::get('publicacao/{publicacao}', [PublicacaosController::class,'show']);
+Route::get('produto/{produto}', [ProdutosController::class,'show']);
 Route::get('rank/{rank}', [RanksController::class,'show']);
 Route::get('telefone/{telefone}', [TelefonesController::class,'show']);
 Route::get('tipos/{tipos}', [TiposController::class,'show']);
@@ -83,6 +87,7 @@ Route::put('itenstelefonecomercio', [ItensTelefoneComerciosController::class,'up
 Route::put('itenstelefoneusuario', [ItensTelefoneUsuariosController::class,'update']);
 Route::put('marca', [MarcasController::class,'update']);
 Route::put('publicacao', [PublicacaosController::class,'update']);
+Route::put('produto', [ProdutosController::class,'update']);
 Route::put('rank', [RanksController::class,'update']);
 Route::put('telefone', [TelefonesController::class,'update']);
 Route::put('tipos', [TiposController::class,'update']);
@@ -97,8 +102,11 @@ Route::delete('itenstelefonecomercio', [ItensTelefoneComerciosController::class,
 Route::delete('itenstelefoneusuario', [ItensTelefoneUsuariosController::class,'destroy']);
 Route::delete('marca', [MarcasController::class,'destroy']);
 Route::delete('publicacao', [PublicacaosController::class,'destroy']);
+Route::delete('produto', [ProdutosController::class,'destroy']);
 Route::delete('rank', [RanksController::class,'destroy']);
 Route::delete('telefone', [TelefonesController::class,'destroy']);
 Route::delete('tipos', [TiposController::class,'destroy']);
 Route::delete('usuario', [UsuariosController::class,'destroy']);
 Route::delete('avaliacao', [AvaliacaoController::class,'destroy']);
+
+Route::post('login', [UsuariosController::class,'login']);

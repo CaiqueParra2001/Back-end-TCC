@@ -29,11 +29,11 @@ public function store(Request $request)
 {
 DB::transaction(function () use ($request) {
 $produto = new ProdutoModel();
-$produto->Nome_Produto = $request->nome;
-$produto->Valor_Produto = $request->Valor;
-$produto->Imagem_Produto = $request->Imagem;
-$produto->Cod_Marca_fk = $request->Marca;
-$produto->Cod_Tipo_fk = $request->Tipo;
+$produto->Nome_Produto = $request->Nome_Produto;
+$produto->Valor_Produto = $request->Valor_Produto;
+$produto->Imagem_Produto = $request->Imagem_Produto;
+$produto->Cod_Marca_fk = $request->Cod_Marca_fk;
+$produto->Cod_Tipo_fk = $request->Cod_Tipo_fk;
 $produto->save();
 });
 }
