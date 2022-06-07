@@ -76,5 +76,19 @@ class UsuariosController extends Controller
     public function login(Request $request)
     {
         return $request;
+
+        $user = UsuarioModel::firstWhere('email', $request['email']);
+        if (!$user) {
+            return response()->json([
+                'message' => 'E-mail e/ou Senha incorretos.'
+            ], 404);
+        }
+
+        if (!password_verify($request['password'], $user['password'])) {
+            return response()->json([
+                'message' => 'E-mail e/ou Senha incorretos.'
+            ], 401);
+        }
+
     }
 }
