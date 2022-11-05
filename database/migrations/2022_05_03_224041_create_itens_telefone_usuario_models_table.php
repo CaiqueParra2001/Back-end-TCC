@@ -13,7 +13,7 @@ class CreateItensTelefoneUsuarioModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('itens_telefone_usuario_models', function (Blueprint $table) {
+        Schema::create('telefone_usuario', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });

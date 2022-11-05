@@ -13,7 +13,7 @@ class CreatePublicacaoModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('publicacao_models', function (Blueprint $table) {
+        Schema::create('publicacoes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreatePublicacaoModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('publicacao_models');
+        Schema::dropIfExists('publicacoes');
     }
 }

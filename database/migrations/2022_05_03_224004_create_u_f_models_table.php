@@ -13,7 +13,7 @@ class CreateUFModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('u_f_models', function (Blueprint $table) {
+        Schema::create('estados', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateUFModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('u_f_models');
+        Schema::dropIfExists('estados');
     }
 }

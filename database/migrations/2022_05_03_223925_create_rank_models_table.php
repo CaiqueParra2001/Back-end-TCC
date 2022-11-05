@@ -13,7 +13,7 @@ class CreateRankModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rank_models', function (Blueprint $table) {
+        Schema::create('rank', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateRankModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rank_models');
+        Schema::dropIfExists('rank');
     }
 }

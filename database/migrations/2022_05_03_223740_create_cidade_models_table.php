@@ -13,7 +13,7 @@ class CreateCidadeModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cidade_models', function (Blueprint $table) {
+        Schema::create('cidades', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateCidadeModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cidade_models');
+        Schema::dropIfExists('cidades');
     }
 }

@@ -13,7 +13,7 @@ class CreateTelefoneModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('telefone_models', function (Blueprint $table) {
+        Schema::create('telefone', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });

@@ -13,7 +13,7 @@ class CreateUsuarioModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario_models', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateUsuarioModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario_models');
+        Schema::dropIfExists('usuarios');
     }
 }

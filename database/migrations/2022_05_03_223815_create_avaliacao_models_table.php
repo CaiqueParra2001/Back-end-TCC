@@ -13,7 +13,7 @@ class CreateAvaliacaoModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('avaliacao_models', function (Blueprint $table) {
+        Schema::create('avaliacoes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateAvaliacaoModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avaliacao_models');
+        Schema::dropIfExists('avaliacoes');
     }
 }

@@ -13,7 +13,7 @@ class CreateComercioModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('comercio_models', function (Blueprint $table) {
+        Schema::create('comercios', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateComercioModelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comercio_models');
+        Schema::dropIfExists('comercios');
     }
 }

@@ -13,7 +13,7 @@ class CreateProdutoModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('produto_models', function (Blueprint $table) {
+        Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
