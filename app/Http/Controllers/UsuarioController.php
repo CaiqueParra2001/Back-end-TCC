@@ -17,7 +17,8 @@ class UsuariosController extends Controller
 */
 public function index(Request $request)
 {
-return User::all();
+// return User::all();
+return "CONECTADO";
 }
 
 /**
