@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cidade;
 use App\Http\Controllers\Controller;
+use App\Models\City;
 use Illuminate\Support\Facades\DB;
 
 class CidadesController extends Controller
@@ -16,7 +17,7 @@ class CidadesController extends Controller
 */
 public function index(Request $request)
 {
-return Cidade::all();
+return City::all();
 }
 
 /**
@@ -28,7 +29,7 @@ return Cidade::all();
 public function store(Request $request)
 {
 DB::transaction(function () use ($request) {
-$cidade = new Cidade();
+$cidade = new City();
 $cidade->Nome_Cidade = $request->nome;
 $cidade->Cod_Uf_FK = $request->uf;
 $cidade->save();
@@ -41,7 +42,7 @@ $cidade->save();
 * @param \App\Cidade $cidade
 * @return \Illuminate\Http\Response
 */
-public function show(Request $request, Cidade $cidade)
+public function show(Request $request, City $cidade)
 {
 return $cidade;
 }
@@ -53,7 +54,7 @@ return $cidade;
 * @param \App\Cidade $cidade
 * @return \Illuminate\Http\Response
 */
-public function update(Request $request, Cidade $cidade)
+public function update(Request $request, City $cidade)
 {
 DB::transaction(function () use ($request, $cidade) {
 $cidade->update($request->all());
@@ -66,13 +67,13 @@ $cidade->update($request->all());
 * @param \App\Cidade $cidade
 * @return \Illuminate\Http\Response
 */
-public function destroy(Cidade $cidade)
+public function destroy(City $cidade)
 {
 $cidade->ativo = false;
 $cidade->save();
 }
 public function pegarCidadesPorUf(string $uf)
 {
-return Cidade::where('uf', $uf)->get();
+return City::where('uf', $uf)->get();
 }
 }
