@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AddressController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        return Address::all();
+        return Brand::all();
     }
 
     /**
@@ -26,27 +26,22 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-    DB::transaction(function () use ($request) {
-        $address= Address::create([
-            'name' => $request['name'],
-            'cpf_cnpj' => $request['cpf_cnpj'],
-            'logo' => $request['logo'],
-            'adress' => $request['adress'],
-            'phone' => $request['phone'],
-            'adress_id' => $request['adress_id'],
-            'user_id' => $request['user_id'],
-        ]);
-    });
+        DB::transaction(function () use ($request) {
+            $address= Brand::create([
+                'name' => $request['name'],
+            ]);
+        });
     }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($address)
+    public function show($Brand)
     {
-        return $address;
+        return $Brand;
     }
 
     /**
@@ -58,14 +53,8 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $address= Address::update([
+        $address= Brand::create([
             'name' => $request['name'],
-            'cpf_cnpj' => $request['cpf_cnpj'],
-            'logo' => $request['logo'],
-            'adress' => $request['adress'],
-            'phone' => $request['phone'],
-            'adress_id' => $request['adress_id'],
-            'user_id' => $request['user_id'],
         ]);
     }
 
@@ -75,8 +64,8 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address)
+    public function destroy($brand)
     {
-        $address->delete();
+        $brand->delete();
     }
 }

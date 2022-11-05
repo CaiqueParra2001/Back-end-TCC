@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Address;
+use App\Models\Avaliation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AddressController extends Controller
+class AvaliationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        return Address::all();
+        return Avaliation::all();
     }
 
     /**
@@ -26,27 +26,25 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-    DB::transaction(function () use ($request) {
-        $address= Address::create([
-            'name' => $request['name'],
-            'cpf_cnpj' => $request['cpf_cnpj'],
-            'logo' => $request['logo'],
-            'adress' => $request['adress'],
-            'phone' => $request['phone'],
-            'adress_id' => $request['adress_id'],
-            'user_id' => $request['user_id'],
-        ]);
-    });
+        DB::transaction(function () use ($request) {
+            $address= Avaliation::create([
+                'name' => $request['name'],
+                'comment' => $request['cpf_cnpj'],
+                'business_id' => $request['business_id'],
+                'user_id' => $request['user_id'],
+            ]);
+        });
     }
+
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($address)
+    public function show($avaliation)
     {
-        return $address;
+        return $avaliation;
     }
 
     /**
@@ -58,15 +56,12 @@ class AddressController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $address= Address::update([
-            'name' => $request['name'],
-            'cpf_cnpj' => $request['cpf_cnpj'],
-            'logo' => $request['logo'],
-            'adress' => $request['adress'],
-            'phone' => $request['phone'],
-            'adress_id' => $request['adress_id'],
-            'user_id' => $request['user_id'],
-        ]);
+        $address= Avaliation::update([
+        'name' => $request['name'],
+        'comment' => $request['cpf_cnpj'],
+        'business_id' => $request['business_id'],
+        'user_id' => $request['user_id'],
+    ]);
     }
 
     /**
@@ -75,8 +70,8 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Address $address)
+    public function destroy($avaliation)
     {
-        $address->delete();
+        $avaliation->delete();
     }
 }
