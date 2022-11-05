@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CidadeModel extends Model
+class State extends Model
 {
     use HasFactory;
-    protected $table ='cidade';
-
-    protected $fillable = ['Nome_Cidade','Cod_UF_FK'];
+    use SoftDeletes;
+    
+    protected $fillable=['name', 'uf'];
 }
