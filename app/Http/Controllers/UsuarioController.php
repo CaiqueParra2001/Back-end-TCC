@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UsuarioModel;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\DB;
 
 class UsuariosController extends Controller
@@ -16,7 +17,7 @@ class UsuariosController extends Controller
 */
 public function index(Request $request)
 {
-return Usuario::all();
+return User::all();
 }
 
 /**
@@ -28,7 +29,7 @@ return Usuario::all();
 public function store(Request $request)
 {
 DB::transaction(function () use ($request) {
-$usuario = new Usuario();
+$usuario = new User();
 $usuario->Nome_Usuario = $request->nome;
 $usuario->Email_Usuario = $request->email;
 $usuario->Senha_Usuario = $request->senha;
@@ -43,7 +44,7 @@ $usuario->save();
 * @param \App\Usuario $usuario
 * @return \Illuminate\Http\Response
 */
-public function show(Request $request, Usuario $usuario)
+public function show(Request $request, User $usuario)
 {
 return $usuario;
 }
@@ -55,7 +56,7 @@ return $usuario;
 * @param \App\Usuario $usuario
 * @return \Illuminate\Http\Response
 */
-public function update(Request $request, Usuario $usuario)
+public function update(Request $request, User $usuario)
 {
 DB::transaction(function () use ($request, $usuario) {
 $usuario->update($request->all());
@@ -68,7 +69,7 @@ $usuario->update($request->all());
 * @param \App\Usuario $usuario
 * @return \Illuminate\Http\Response
 */
-public function destroy(Usuario $usuario)
+public function destroy(User $usuario)
 {
 $usuario->ativo = false;
 $usuario->save();
