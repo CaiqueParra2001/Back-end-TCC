@@ -9,8 +9,6 @@ class UFModel extends Model
 {
     use HasFactory;
     protected $table ='uf';
-    public $timestamps = false;
-    protected $primaryKey = 'Cod_UF';
 
     protected $fillable = ['Nome_UF','Sigla_UF'];
 }

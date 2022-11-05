@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProdutoModel;
+use App\Models\UsuarioModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class ProdutosController extends Controller
+class UsuariosController extends Controller
 {
 /**
 * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ProdutosController extends Controller
 */
 public function index(Request $request)
 {
-return Produto::all();
+return Usuario::all();
 }
 
 /**
@@ -28,52 +28,52 @@ return Produto::all();
 public function store(Request $request)
 {
 DB::transaction(function () use ($request) {
-$produto = new Produto();
-$produto->Nome_Produto = $request->nome;
-$produto->Valor_Produto = $request->Valor;
-$produto->Imagem_Produto = $request->Imagem;
-$produto->Cod_Marca_fk = $request->Marca;
-$produto->Cod_Tipo_fk = $request->Tipo;
-$produto->save();
+$usuario = new Usuario();
+$usuario->Nome_Usuario = $request->nome;
+$usuario->Email_Usuario = $request->email;
+$usuario->Senha_Usuario = $request->senha;
+
+$usuario->save();
 });
 }
 
 /**
 * Display the specified resource.
 *
-* @param \App\Produto $produto
+* @param \App\Usuario $usuario
 * @return \Illuminate\Http\Response
 */
-public function show(Request $request, Produto $produto)
+public function show(Request $request, Usuario $usuario)
 {
-return $produto;
+return $usuario;
 }
 
 /**
 * Update the specified resource in storage.
 *
 * @param \Illuminate\Http\Request $request
-* @param \App\Produto $produto
+* @param \App\Usuario $usuario
 * @return \Illuminate\Http\Response
 */
-public function update(Request $request, Produto $produto)
+public function update(Request $request, Usuario $usuario)
 {
-DB::transaction(function () use ($request, $produto) {
-$produto->update($request->all());
+DB::transaction(function () use ($request, $usuario) {
+$usuario->update($request->all());
 });
 }
 
 /**
 * Remove the specified resource from storage.
 *
-* @param \App\Produto $produto
+* @param \App\Usuario $usuario
 * @return \Illuminate\Http\Response
 */
-public function destroy(Produto $produto)
+public function destroy(Usuario $usuario)
 {
-$produto->ativo = false;
-$produto->save();
+$usuario->ativo = false;
+$usuario->save();
 }
 
 }
+
 

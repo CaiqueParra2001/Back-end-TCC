@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProdutoModel;
+use App\Models\Cidade;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class ProdutosController extends Controller
+class CidadesController extends Controller
 {
 /**
 * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ProdutosController extends Controller
 */
 public function index(Request $request)
 {
-return Produto::all();
+return Cidade::all();
 }
 
 /**
@@ -28,52 +28,51 @@ return Produto::all();
 public function store(Request $request)
 {
 DB::transaction(function () use ($request) {
-$produto = new Produto();
-$produto->Nome_Produto = $request->nome;
-$produto->Valor_Produto = $request->Valor;
-$produto->Imagem_Produto = $request->Imagem;
-$produto->Cod_Marca_fk = $request->Marca;
-$produto->Cod_Tipo_fk = $request->Tipo;
-$produto->save();
+$cidade = new Cidade();
+$cidade->Nome_Cidade = $request->nome;
+$cidade->Cod_Uf_FK = $request->uf;
+$cidade->save();
 });
 }
 
 /**
 * Display the specified resource.
 *
-* @param \App\Produto $produto
+* @param \App\Cidade $cidade
 * @return \Illuminate\Http\Response
 */
-public function show(Request $request, Produto $produto)
+public function show(Request $request, Cidade $cidade)
 {
-return $produto;
+return $cidade;
 }
 
 /**
 * Update the specified resource in storage.
 *
 * @param \Illuminate\Http\Request $request
-* @param \App\Produto $produto
+* @param \App\Cidade $cidade
 * @return \Illuminate\Http\Response
 */
-public function update(Request $request, Produto $produto)
+public function update(Request $request, Cidade $cidade)
 {
-DB::transaction(function () use ($request, $produto) {
-$produto->update($request->all());
+DB::transaction(function () use ($request, $cidade) {
+$cidade->update($request->all());
 });
 }
 
 /**
 * Remove the specified resource from storage.
 *
-* @param \App\Produto $produto
+* @param \App\Cidade $cidade
 * @return \Illuminate\Http\Response
 */
-public function destroy(Produto $produto)
+public function destroy(Cidade $cidade)
 {
-$produto->ativo = false;
-$produto->save();
+$cidade->ativo = false;
+$cidade->save();
 }
-
+public function pegarCidadesPorUf(string $uf)
+{
+return Cidade::where('uf', $uf)->get();
 }
-
+}

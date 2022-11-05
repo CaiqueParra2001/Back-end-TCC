@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProdutoModel;
+use App\Models\UfModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class ProdutosController extends Controller
+class UfsController extends Controller
 {
 /**
 * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ProdutosController extends Controller
 */
 public function index(Request $request)
 {
-return Produto::all();
+return Uf::all();
 }
 
 /**
@@ -28,52 +28,50 @@ return Produto::all();
 public function store(Request $request)
 {
 DB::transaction(function () use ($request) {
-$produto = new Produto();
-$produto->Nome_Produto = $request->nome;
-$produto->Valor_Produto = $request->Valor;
-$produto->Imagem_Produto = $request->Imagem;
-$produto->Cod_Marca_fk = $request->Marca;
-$produto->Cod_Tipo_fk = $request->Tipo;
-$produto->save();
+$uf = new Uf();
+$uf->Nome_UF = $request->nome;
+$uf->Sigla_UF = $request->Sigla;
+$uf->save();
 });
 }
 
 /**
 * Display the specified resource.
 *
-* @param \App\Produto $produto
+* @param \App\Uf $uf
 * @return \Illuminate\Http\Response
 */
-public function show(Request $request, Produto $produto)
+public function show(Request $request, Uf $uf)
 {
-return $produto;
+return $uf;
 }
 
 /**
 * Update the specified resource in storage.
 *
 * @param \Illuminate\Http\Request $request
-* @param \App\Produto $produto
+* @param \App\Uf $uf
 * @return \Illuminate\Http\Response
 */
-public function update(Request $request, Produto $produto)
+public function update(Request $request, Uf $uf)
 {
-DB::transaction(function () use ($request, $produto) {
-$produto->update($request->all());
+DB::transaction(function () use ($request, $uf) {
+$uf->update($request->all());
 });
 }
 
 /**
 * Remove the specified resource from storage.
 *
-* @param \App\Produto $produto
+* @param \App\Uf $uf
 * @return \Illuminate\Http\Response
 */
-public function destroy(Produto $produto)
+public function destroy(Uf $uf)
 {
-$produto->ativo = false;
-$produto->save();
+$uf->ativo = false;
+$uf->save();
 }
 
 }
+
 

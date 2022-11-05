@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProdutoModel;
+use App\Models\PublicacaoModel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class ProdutosController extends Controller
+class PublicacaosController extends Controller
 {
 /**
 * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ProdutosController extends Controller
 */
 public function index(Request $request)
 {
-return Produto::all();
+return Publicacao::all();
 }
 
 /**
@@ -28,52 +28,51 @@ return Produto::all();
 public function store(Request $request)
 {
 DB::transaction(function () use ($request) {
-$produto = new Produto();
-$produto->Nome_Produto = $request->nome;
-$produto->Valor_Produto = $request->Valor;
-$produto->Imagem_Produto = $request->Imagem;
-$produto->Cod_Marca_fk = $request->Marca;
-$produto->Cod_Tipo_fk = $request->Tipo;
-$produto->save();
+$puvlicacao = new Puvlicacao();
+$puvlicacao->Data_Publicacao = $request->Data;
+$puvlicacao->Cod_Comercio_FK = $request->Comercio;
+$puvlicacao->Validade_Publicacao = $request->Validade;
+$puvlicacao->save();
 });
 }
 
 /**
 * Display the specified resource.
 *
-* @param \App\Produto $produto
+* @param \App\Publicacao $puvlicacao
 * @return \Illuminate\Http\Response
 */
-public function show(Request $request, Produto $produto)
+public function show(Request $request, Publicacao $puvlicacao)
 {
-return $produto;
+return $puvlicacao;
 }
 
 /**
 * Update the specified resource in storage.
 *
 * @param \Illuminate\Http\Request $request
-* @param \App\Produto $produto
+* @param \App\Publicacao $puvlicacao
 * @return \Illuminate\Http\Response
 */
-public function update(Request $request, Produto $produto)
+public function update(Request $request, Publicacao $puvlicacao)
 {
-DB::transaction(function () use ($request, $produto) {
-$produto->update($request->all());
+DB::transaction(function () use ($request, $puvlicacao) {
+$puvlicacao->update($request->all());
 });
 }
 
 /**
 * Remove the specified resource from storage.
 *
-* @param \App\Produto $produto
+* @param \App\Publicacao $puvlicacao
 * @return \Illuminate\Http\Response
 */
-public function destroy(Produto $produto)
+public function destroy(Publicacao $puvlicacao)
 {
-$produto->ativo = false;
-$produto->save();
+$puvlicacao->ativo = false;
+$puvlicacao->save();
 }
 
 }
+
 
