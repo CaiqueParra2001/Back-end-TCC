@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UsuarioModel;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\User;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class UsuariosController extends Controller
@@ -29,12 +29,11 @@ return User::all();
 public function store(Request $request)
 {
 DB::transaction(function () use ($request) {
-$usuario = new User();
-$usuario->Nome_Usuario = $request->nome;
-$usuario->Email_Usuario = $request->email;
-$usuario->Senha_Usuario = $request->senha;
-
-$usuario->save();
+    $user= User::create([
+        'name' => $request["name"],
+        'email' => $request["email"],
+        'password' => $request["password"]
+    ]);
 });
 }
 
