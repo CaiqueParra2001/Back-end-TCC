@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BrandController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return Brand::all();
+        return Product::all();
     }
 
     /**
@@ -27,8 +27,13 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $business= Brand::create([
+            $product= Product::create([
                 'name' => $request['name'],
+                'description' => $request['description'],
+                'price' => $request['price'],
+                'image' => $request['image'],
+                'category_id' => $request['category_id'],
+                'brand_id' => $request['brand_id'],
             ]);
         });
     }
@@ -39,9 +44,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($Brand)
+    public function show($product)
     {
-        return $Brand;
+        return $product;
     }
 
     /**
@@ -51,10 +56,15 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $product)
     {
-        $business= Brand::create([
+        $product= Product::create([
             'name' => $request['name'],
+            'description' => $request['description'],
+            'price' => $request['price'],
+            'image' => $request['image'],
+            'category_id' => $request['category_id'],
+            'brand_id' => $request['brand_id'],
         ]);
     }
 
@@ -64,8 +74,8 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($brand)
+    public function destroy($product)
     {
-        $brand->delete();
+        $product->delete();
     }
 }

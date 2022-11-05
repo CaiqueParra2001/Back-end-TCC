@@ -27,9 +27,9 @@ class AvaliationController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $address= Avaliation::create([
+            $avaliation= Avaliation::create([
                 'name' => $request['name'],
-                'comment' => $request['cpf_cnpj'],
+                'comment' => $request['comment'],
                 'business_id' => $request['business_id'],
                 'user_id' => $request['user_id'],
             ]);
@@ -56,7 +56,7 @@ class AvaliationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $address= Avaliation::update([
+        $avaliation= Avaliation::update([
         'name' => $request['name'],
         'comment' => $request['cpf_cnpj'],
         'business_id' => $request['business_id'],

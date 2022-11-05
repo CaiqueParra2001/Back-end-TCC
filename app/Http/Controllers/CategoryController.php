@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BrandController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return Brand::all();
+        return Category::all();
     }
 
     /**
@@ -27,7 +27,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $business= Brand::create([
+            $category= Category::create([
                 'name' => $request['name'],
             ]);
         });
@@ -39,10 +39,11 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($Brand)
+    public function show($category)
     {
-        return $Brand;
+        return $category;
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -51,9 +52,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $category)
     {
-        $business= Brand::create([
+        $category= Category::create([
             'name' => $request['name'],
         ]);
     }
@@ -64,8 +65,8 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($brand)
+    public function destroy($category)
     {
-        $brand->delete();
+        $category->delete();
     }
 }

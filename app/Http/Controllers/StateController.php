@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BrandController extends Controller
+class StateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return Brand::all();
+        return State::all();
     }
 
     /**
@@ -27,8 +27,9 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $business= Brand::create([
+            $state= State::create([
                 'name' => $request['name'],
+                'uf' => $request['uf'],
             ]);
         });
     }
@@ -39,9 +40,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($Brand)
+    public function show($state)
     {
-        return $Brand;
+        return $state;
     }
 
     /**
@@ -51,10 +52,11 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $state)
     {
-        $business= Brand::create([
+        $state= State::update([
             'name' => $request['name'],
+            'uf' => $request['uf'],
         ]);
     }
 
@@ -64,8 +66,8 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($brand)
+    public function destroy($state)
     {
-        $brand->delete();
+        $state->delete();
     }
 }

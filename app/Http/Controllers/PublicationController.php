@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\Publication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BrandController extends Controller
+class PublicationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return Brand::all();
+        return Publication::all();
     }
 
     /**
@@ -27,8 +27,12 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $business= Brand::create([
-                'name' => $request['name'],
+            $publication= Publication::create([
+                'tittle' => $request['tittle'],
+                'image' => $request['image'],
+                'business_id' => $request['business_id'],
+                'discription' => $request['discription'],
+                'validate' => $request['validate'],
             ]);
         });
     }
@@ -39,9 +43,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($Brand)
+    public function show($publication)
     {
-        return $Brand;
+        return $publication;
     }
 
     /**
@@ -51,11 +55,16 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $publication)
     {
-        $business= Brand::create([
-            'name' => $request['name'],
-        ]);
+    
+            $publication= Publication::create([
+                'tittle' => $request['tittle'],
+                'image' => $request['image'],
+                'business_id' => $request['business_id'],
+                'discription' => $request['discription'],
+                'validate' => $request['validate'],
+            ]);
     }
 
     /**
@@ -64,8 +73,8 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($brand)
+    public function destroy($publication)
     {
-        $brand->delete();
+        $publication->delete();
     }
 }

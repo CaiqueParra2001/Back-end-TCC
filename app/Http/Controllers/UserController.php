@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class BrandController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return Brand::all();
+        return User::all();
     }
 
     /**
@@ -27,8 +27,10 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $business= Brand::create([
-                'name' => $request['name'],
+            $user = User::create([
+                'name' => $request["name"],
+                'email' => $request["email"],
+                'password' => $request["password"]
             ]);
         });
     }
@@ -39,9 +41,9 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($Brand)
+    public function show($user)
     {
-        return $Brand;
+        return $user;
     }
 
     /**
@@ -51,10 +53,12 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $user)
     {
-        $business= Brand::create([
-            'name' => $request['name'],
+        $user = User::create([
+            'name' => $request["name"],
+            'email' => $request["email"],
+            'password' => $request["password"]
         ]);
     }
 
@@ -64,8 +68,8 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($brand)
+    public function destroy($user)
     {
-        $brand->delete();
+        $user->delete();
     }
 }

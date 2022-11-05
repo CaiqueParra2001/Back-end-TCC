@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BusinessController extends Controller
 {
@@ -13,7 +15,7 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        //
+        return Business::all();
     }
 
     /**
@@ -24,7 +26,16 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::transaction(function () use ($request) {
+            $business= Business::create([
+                'name' => $request['name'],
+                'logo' => $request['logo'],
+                'phone' => $request['phone'],
+                'address' => $request['address'],
+                'user_id' => $request['user_id'],
+            ]);
+        });
+    
     }
 
     /**
@@ -33,9 +44,9 @@ class BusinessController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($business)
     {
-        //
+        return $business;
     }
 
     /**
@@ -47,8 +58,14 @@ class BusinessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $business= Business::update([
+            'name' => $request['name'],
+            'logo' => $request['logo'],
+            'phone' => $request['phone'],
+            'address' => $request['address'],
+            'user_id' => $request['user_id'],
+        ]);
+}
 
     /**
      * Remove the specified resource from storage.
@@ -56,8 +73,8 @@ class BusinessController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($business)
     {
-        //
+        $business->delete();
     }
 }
