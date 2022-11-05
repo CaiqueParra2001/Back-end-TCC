@@ -29,13 +29,14 @@ class BusinessController extends Controller
         DB::transaction(function () use ($request) {
             $business= Business::create([
                 'name' => $request['name'],
-                'logo' => $request['logo'],
+                'cpf_cnpj' => $request['cpf_cnpj'],
+                'logo' => '',
                 'phone' => $request['phone'],
-                'address' => $request['address'],
+                'address' => "",
                 'user_id' => $request['user_id'],
             ]);
         });
-    
+
     }
 
     /**
